@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #969696;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,30 +19,38 @@ body {
     font-size: 24px;
 }
 
+.animated-link::before,
 .animated-link::after {
     content: '';
     position: absolute;
     left: 0;
-    bottom: -5px; /* Adjust as needed */
+    bottom: -5px;
     width: 100%;
-    height: 2px; /* Adjust as needed */
-    background-color: white;
+    height: 2px;
     transform-origin: left;
-    transform: scaleX(1);
-    transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-.animated-link:hover::after {
-    background-color: orange;
-    transform: scaleX(0);
+.animated-link::before {
+    background-color: white;
+    transition: opacity 0.3s ease;
 }
 
 .animated-link::after {
-    background-color: white;
-    transform: scaleX(0);
+    background-color: orange;
+    opacity: 0;
+    transform: scaleX(1);
+    transition: opacity 0.3s ease;
 }
 
 .animated-link:hover::after {
-    transform: scaleX(1);
-    background-color: orange;
+    opacity: 1;
+    animation: growOrange 0.3s forwards;
+}
+@keyframes growOrange {
+    0% {
+        transform: scaleX(0);
+    }
+    100% {
+        transform: scaleX(1);
+    }
 }
